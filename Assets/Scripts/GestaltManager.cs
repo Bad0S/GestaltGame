@@ -8,7 +8,8 @@ public class GestaltManager : MonoBehaviour
 
     public Material whiteMat;
     public Material blackMat;
-    public List<GameObject> platformsList;
+    public List<GameObject> platformsList3D;
+    public List<GameObject> platformsList2D;
     public Renderer backgroundRend;
     public bool lerpBtW;
     public bool lerpWtB;
@@ -42,9 +43,12 @@ public class GestaltManager : MonoBehaviour
         {
             timer += Time.deltaTime;
             backgroundRend.material.Lerp(blackMat, whiteMat, timer);
-            foreach (GameObject platform in platformsList)
+            foreach (GameObject platform in platformsList3D)
             {
                 platform.GetComponent<Renderer>().material.Lerp(whiteMat, blackMat, timer);
+            }
+            foreach (GameObject platform in platformsList2D)
+            {
             }
         }
 
@@ -52,7 +56,7 @@ public class GestaltManager : MonoBehaviour
         {
             timer += Time.deltaTime;
             backgroundRend.material.Lerp(whiteMat, blackMat, timer);
-            foreach (GameObject platform in platformsList)
+            foreach (GameObject platform in platformsList3D)
             {
                 platform.GetComponent<Renderer>().material.Lerp(blackMat, whiteMat, timer);
             }

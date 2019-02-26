@@ -9,6 +9,7 @@ public class CameraBehaviour : MonoBehaviour
     private Vector2 smoothedVector;
     Vector2 reference;
     public float smoothTime;
+    public float maxSpeed;
 
     private void Start()
     {
@@ -17,12 +18,12 @@ public class CameraBehaviour : MonoBehaviour
 
     void FixedUpdate ()
     {
-       smoothedVector = Vector2.SmoothDamp(smoothedVector, playerTrans.position, ref reference, smoothTime); 
+       smoothedVector = Vector2.SmoothDamp(transform.position, playerTrans.position, ref reference, smoothTime,maxSpeed); 
 
 
-        if (cam.WorldToScreenPoint((playerTrans.position)).y > 285 || cam.WorldToScreenPoint(playerTrans.position).y < 120 || cam.WorldToScreenPoint(playerTrans.position).x > 477 || cam.WorldToScreenPoint(playerTrans.position).x < 277)
-        {
+        //if (cam.WorldToScreenPoint((playerTrans.position)).y > 285 || cam.WorldToScreenPoint(playerTrans.position).y < 120 || cam.WorldToScreenPoint(playerTrans.position).x > 477 || cam.WorldToScreenPoint(playerTrans.position).x < 277)
+        //{
             transform.position = new Vector3(smoothedVector.x, smoothedVector.y, transform.position.z);
-        }
+        //}
 	}
 }

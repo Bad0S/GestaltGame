@@ -348,7 +348,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1035832177}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!65 &265969919
 BoxCollider:
@@ -456,7 +456,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -497,7 +497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrans: {fileID: 1394999787}
-  smoothTime: 1
+  smoothTime: 0.75
+  maxSpeed: 30
 --- !u!1001 &551532417
 Prefab:
   m_ObjectHideFlags: 0
@@ -919,8 +920,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 265969918}
   - {fileID: 1779897450}
+  - {fileID: 265969918}
   - {fileID: 721324339}
   m_Father: {fileID: 2073426913}
   m_RootOrder: 1
@@ -1431,7 +1432,7 @@ Transform:
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1035832177}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!65 &1779897451
 BoxCollider:
