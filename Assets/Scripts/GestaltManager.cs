@@ -10,6 +10,7 @@ public class GestaltManager : MonoBehaviour
     public Material blackMat;
     public List<GameObject> platformsList3D;
     public List<GameObject> platformsList2D;
+    public Color lerpedColor;
     public Renderer backgroundRend;
     public bool lerpBtW;
     public bool lerpWtB;
@@ -49,6 +50,8 @@ public class GestaltManager : MonoBehaviour
             }
             foreach (GameObject platform in platformsList2D)
             {
+                lerpedColor = Color.Lerp(Color.white, Color.black, timer);
+                platform.GetComponent<SpriteRenderer>().color = lerpedColor;
             }
         }
 
@@ -59,6 +62,11 @@ public class GestaltManager : MonoBehaviour
             foreach (GameObject platform in platformsList3D)
             {
                 platform.GetComponent<Renderer>().material.Lerp(blackMat, whiteMat, timer);
+            }
+            foreach (GameObject platform in platformsList2D)
+            {
+                lerpedColor = Color.Lerp(Color.black, Color.white, timer);
+                platform.GetComponent<SpriteRenderer>().color = lerpedColor;
             }
         }
     }

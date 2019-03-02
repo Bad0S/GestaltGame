@@ -1187,8 +1187,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteMat: {fileID: 2100000, guid: c550e0cb6a732244fb9888602e460d68, type: 2}
   blackMat: {fileID: 2100000, guid: 8948bd8d09bdfae4eac2b333cff88a88, type: 2}
-  platformsList3D: []
-  platformsList2D: []
+  platformsList3D:
+  - {fileID: 800449339}
+  - {fileID: 1779897449}
+  - {fileID: 265969917}
+  - {fileID: 721324338}
+  platformsList2D:
+  - {fileID: 64171264}
+  - {fileID: 866974670}
+  lerpedColor: {r: 0, g: 0, b: 0, a: 0}
   backgroundRend: {fileID: 1772369688}
   lerpBtW: 0
   lerpWtB: 0
@@ -1392,7 +1399,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1772369686}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 13.5}
+  m_LocalPosition: {x: 25.7, y: 0, z: 13.5}
   m_LocalScale: {x: 10, y: 1, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
