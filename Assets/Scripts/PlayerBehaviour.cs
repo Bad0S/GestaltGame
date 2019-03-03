@@ -8,6 +8,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float jumpForce;
     public float moveSpeed;
     public bool onGround;
+    public static bool playerDead;
 
 	void Start ()
     {
@@ -16,13 +17,16 @@ public class PlayerBehaviour : MonoBehaviour
 	
 	void Update ()
     {
-        if (Input.GetAxis("Horizontal") != 0)
+        if (!playerDead)
         {
-            playerBody.position += new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && onGround)
-        {
-            playerBody.AddForce(Vector3.up * jumpForce);
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                playerBody.position += new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0);
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && onGround)
+            {
+                playerBody.AddForce(Vector3.up * jumpForce);
+            }
         }
 
         RaycastHit groundHit;

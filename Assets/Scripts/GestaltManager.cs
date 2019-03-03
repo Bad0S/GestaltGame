@@ -24,7 +24,7 @@ public class GestaltManager : MonoBehaviour
 
     void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && !lerpBtW && !lerpWtB)
+        if (Input.GetKeyDown(KeyCode.Return) && !lerpBtW && !lerpWtB && !PlayerBehaviour.playerDead)
         {
             if(mode == false)
             {

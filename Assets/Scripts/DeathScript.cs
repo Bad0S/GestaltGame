@@ -8,40 +8,60 @@ public class DeathScript : MonoBehaviour
     public Transform checkpointTrans;
     public GameObject whiteVeil;
     public GameObject blackVeil;
-    public bool lerp;
+    public bool fadeIn;
+    public bool fadeOut;
     public float timer;
-    public float alpha;
+    public Transform playerTrans;
 
-    void OnTriggerEnter (Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        playerTrans = other.GetComponent<Transform>();
+        PlayerBehaviour.playerDead = true;
         StartCoroutine(FadeAndRespawn());
-        lerp = true;
-        if (!GestaltManager.mode)
-        {
-            whiteVeil.SetActive(true);
-            whiteVeil.GetComponent<Image>().color = Color.Lerp(new Color(255, 255, 255, 0), Color.white, timer);
-        }
-        else
-        {
-            blackVeil.SetActive(true);
-            blackVeil.GetComponent<Image>().color = Color.Lerp(new Color(0, 0, 0, 0), Color.black, timer);
-        }
-
     }
 
     private void Update()
     {
-        if (lerp)
+        if (fadeIn)
         {
             timer += Time.deltaTime;
+            if (!GestaltManager.mode)
+            {
+                whiteVeil.SetActive(true);
+                whiteVeil.GetComponent<Image>().color = Color.Lerp(new Color(255, 255, 255, 0), Color.white, timer);
+            }
+            else
+            {
+                blackVeil.SetActive(true);
+                blackVeil.GetComponent<Image>().color = Color.Lerp(new Color(0, 0, 0, 0), Color.black, timer);
+            }
+        }
+        if (fadeOut)
+        {
+            timer += Time.deltaTime;
+            if (!GestaltManager.mode)
+            {
+                whiteVeil.GetComponent<Image>().color = Color.Lerp(Color.white, new Color(255, 255, 255, 0), timer);
+            }
+            else
+            {
+                blackVeil.GetComponent<Image>().color = Color.Lerp(Color.black, new Color(0, 0, 0, 0), timer);
+            }
         }
     }
 
     private IEnumerator FadeAndRespawn()
     {
+        fadeIn = true;
         yield return new WaitForSeconds(1f);
-        lerp = false;
+        fadeIn = false;
         timer = 0;
+        playerTrans.position = checkpointTrans.position;
+        PlayerBehaviour.playerDead = false;
+        yield return new WaitForSeconds(0.2f);
+        fadeOut = true;
+        yield return new WaitForSeconds(1f);
+        fadeOut = false;
         blackVeil.SetActive(false);
         whiteVeil.SetActive(false);
     }
