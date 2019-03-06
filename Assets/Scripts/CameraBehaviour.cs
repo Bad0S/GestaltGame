@@ -18,15 +18,10 @@ public class CameraBehaviour : MonoBehaviour
 
     void FixedUpdate ()
     {
-        if (!PlayerBehaviour.playerDead)
-        {
             smoothedVector = Vector2.SmoothDamp(transform.position, playerTrans.position, ref reference, smoothTime, maxSpeed);
             //if (cam.WorldToScreenPoint((playerTrans.position)).y > 285 || cam.WorldToScreenPoint(playerTrans.position).y < 120 || cam.WorldToScreenPoint(playerTrans.position).x > 477 || cam.WorldToScreenPoint(playerTrans.position).x < 277)
             //{
             transform.position = new Vector3(smoothedVector.x, smoothedVector.y, transform.position.z);
             //}
-        }
-        else
-        { transform.position = new Vector3(playerTrans.position.x, playerTrans.position.y, transform.position.z); }
 	}
 }

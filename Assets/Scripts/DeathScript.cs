@@ -12,6 +12,12 @@ public class DeathScript : MonoBehaviour
     public bool fadeOut;
     public float timer;
     public Transform playerTrans;
+    private Transform mainCamTrans;
+
+    private void Start()
+    {
+        mainCamTrans = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -57,11 +63,13 @@ public class DeathScript : MonoBehaviour
         fadeIn = false;
         timer = 0;
         playerTrans.position = checkpointTrans.position;
+        mainCamTrans.position = new Vector3(checkpointTrans.position.x, checkpointTrans.position.y, mainCamTrans.position.z);
+        yield return new WaitForSeconds(0.4f);
         PlayerBehaviour.playerDead = false;
-        yield return new WaitForSeconds(0.2f);
         fadeOut = true;
         yield return new WaitForSeconds(1f);
         fadeOut = false;
+        timer = 0;
         blackVeil.SetActive(false);
         whiteVeil.SetActive(false);
     }
