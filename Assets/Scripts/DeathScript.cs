@@ -51,7 +51,6 @@ public class DeathScript : MonoBehaviour
 
     public IEnumerator FadeAndRespawn(Vector3 TPpoint, Vector3 CameraPoint)
     {
-        Debug.Log("oui");
         PlayerBehaviour.playerDead = true;
         fadeIn = true;
         yield return new WaitForSeconds(1f);
