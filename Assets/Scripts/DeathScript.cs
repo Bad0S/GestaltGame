@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class DeathScript : MonoBehaviour
 {
-    public Transform checkpointTrans;
     public GameObject whiteVeil;
     public GameObject blackVeil;
     public bool fadeIn;
@@ -17,13 +16,7 @@ public class DeathScript : MonoBehaviour
     private void Start()
     {
         mainCamTrans = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        playerTrans = other.GetComponent<Transform>();
-        PlayerBehaviour.playerDead = true;
-        StartCoroutine(FadeAndRespawn());
+        playerTrans = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void Update()
@@ -56,14 +49,16 @@ public class DeathScript : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeAndRespawn()
+    public IEnumerator FadeAndRespawn(Vector3 TPpoint, Vector3 CameraPoint)
     {
+        Debug.Log("oui");
+        PlayerBehaviour.playerDead = true;
         fadeIn = true;
         yield return new WaitForSeconds(1f);
         fadeIn = false;
         timer = 0;
-        playerTrans.position = checkpointTrans.position;
-        mainCamTrans.position = new Vector3(checkpointTrans.position.x, checkpointTrans.position.y, mainCamTrans.position.z);
+        playerTrans.position = TPpoint;
+        mainCamTrans.position = CameraPoint;
         yield return new WaitForSeconds(0.4f);
         PlayerBehaviour.playerDead = false;
         fadeOut = true;
