@@ -23,6 +23,8 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 playerBody.position += new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0);
             }
+            if (Input.GetAxis("Horizontal") == 0)
+            { playerBody.velocity = new Vector2(0, playerBody.velocity.y); }
             if (Input.GetKeyDown(KeyCode.Space) && onGround)
             {
                 playerBody.AddForce(Vector3.up * jumpForce);
