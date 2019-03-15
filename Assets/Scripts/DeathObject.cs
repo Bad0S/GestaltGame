@@ -10,7 +10,7 @@ public class DeathObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" )
+        if (collision.gameObject.tag == "Player" && !PlayerBehaviour.playerDead)
         {
             StartCoroutine(deathScript.FadeAndRespawn(checkpoint.position, cameraCheckpoint.position));
         }
